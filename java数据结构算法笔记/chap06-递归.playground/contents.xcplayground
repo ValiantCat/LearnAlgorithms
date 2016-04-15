@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<playground version='6.0' target-platform='ios'>
+    <pages>
+        <page name='01-三角数字'/>
+        <page name='02-全排列'/>
+        <page name='03-递归二分查找'/>
+        <page name='04-汉诺塔问题'/>
+    </pages>
+</playground>
