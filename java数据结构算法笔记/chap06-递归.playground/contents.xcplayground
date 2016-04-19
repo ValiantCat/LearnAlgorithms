@@ -5,5 +5,9 @@
         <page name='02-全排列'/>
         <page name='03-递归二分查找'/>
         <page name='04-汉诺塔问题'/>
+        <page name='05-归并2个有序数组'/>
+        <page name='06-归并排序'/>
+        <page name='07-背包问题'/>
+        <page name='08-子集'/>
     </pages>
 </playground>

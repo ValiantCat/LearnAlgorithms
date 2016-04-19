@@ -45,6 +45,17 @@ func factorial(n:Int) -> Int {
         return n * factorial(index - 1)
     }
 }
-factorial(6)
+func factorialLoop(n:Int) -> Int {
+    var index = n
+    var total = 1
+    
+    while  index  > 0 {
+        total *= index
+        index -= 1
+    }
+    return total
 
+}
+factorial(6)
+factorialLoop(6)
 //: [Next](@next)
