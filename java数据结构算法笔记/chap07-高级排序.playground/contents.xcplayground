@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<playground version='6.0' target-platform='ios'>
+<playground version='6.0' target-platform='ios' display-mode='raw'>
     <pages>
-        <page name='Untitled Page 2'/>
+        <page name='02-快速排序划分思想'/>
         <page name='01-shellSort'/>
+        <page name='03-快排1'/>
+        <page name='04-快排2'/>
+        <page name='05-快排3'/>
     </pages>
 </playground>

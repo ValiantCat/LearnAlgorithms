@@ -75,7 +75,7 @@ struct ArraySh{
     
     
 }
-// 效率不好估计 一般介于O(N²)和O(nLog（N）)   估计在 O(N(3/2平分))  和 O(N(7/6平分))
+//: 效率不好估计 一般介于O(N²)和O(nLog（N）)   估计在 O(N(3/2平分))  和 O(N(7/6平分))
 let count = 10
 var thearray = ArraySh(max: count)
 for i in 0..<count {
