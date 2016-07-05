@@ -180,7 +180,7 @@ while sortIndex >= 0 {
 print("生成树后")
 theHeap.displayArray()
 theHeap.displayHeap()
-
+//
 for i in (0...size-1).reverse() {
     let node = theHeap.remove()
     //    把这个元素放在其实已经被移除的数组最后面，  这样不用使用其他辅助空间
