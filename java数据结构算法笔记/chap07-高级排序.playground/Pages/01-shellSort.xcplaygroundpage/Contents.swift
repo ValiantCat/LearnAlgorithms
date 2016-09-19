@@ -1,8 +1,8 @@
 //: Playground - noun: a place where people can play
 
-import UIKit
+import Foundation
 //: MARK - 3 插入排序
-func insertionSort<T:Comparable>(aArr:[T]) -> [T] {
+func insertionSort<T:Comparable>(_ aArr:[T]) -> [T] {
     var arr = aArr
     for outerIndex in 1..<arr.count { //  在插入排序中OuterIndex左侧是有序的 ， 右侧无需，依次判断 并且向右移动给给被标记变量留出位置
         let temp = arr[outerIndex] // 标记每次需要被插入的数据
@@ -24,19 +24,19 @@ func insertionSort<T:Comparable>(aArr:[T]) -> [T] {
 
 //   以上为复习
 
-func randomInRange(range: Range<Int>) -> Int {
-    let count = UInt32(range.endIndex - range.startIndex)
-    return  Int(arc4random_uniform(count)) + range.startIndex
+func randomInRange(_ range: Range<Int>) -> Int {
+    let count = UInt32(range.upperBound - range.lowerBound)
+    return  Int(arc4random_uniform(count)) + range.lowerBound
 }
 
 struct ArraySh{
     private var theArray:[Int]
     private var nElements:Int
     init(max:Int) {
-        theArray = Array<Int>(count: max,repeatedValue: 0)
+        theArray = Array<Int>(repeating: 0,count: max)
         nElements = 0
     }
-    mutating func insert(value:Int) {
+    mutating func insert(_ value:Int) {
         theArray[nElements] = value
         nElements += 1
     }
@@ -47,7 +47,7 @@ struct ArraySh{
         }
         print("")
     }
-//     算法思想 将插入排序的1  改为h即可
+    //     算法思想 将插入排序的1  改为h即可
     mutating func shellSort() {
         var innerIndex = 0,outerIndex = 0
         var tempValue = 0
@@ -80,6 +80,7 @@ let count = 10
 var thearray = ArraySh(max: count)
 for i in 0..<count {
     thearray.insert(randomInRange(0..<count))
+    //thearray.insert(count-i)
 }
 thearray.display()
 thearray.shellSort()

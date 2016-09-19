@@ -1,21 +1,27 @@
+//
+//  main.swift
+//  SwiftMearge
+//
+//  Created by nero on 16/9/19.
+//  Copyright © 2016年 nero. All rights reserved.
+//
+
 //: [Previous](@previous)
 
-import Foundation
-
 //: 利用三数据项取中指，加快算法效率，取出边界判断， 避免多次划分子数组
-func randomInRange(range: Range<Int>) -> Int {
-    let count = UInt32(range.endIndex - range.startIndex)
-    return  Int(arc4random_uniform(count)) + range.startIndex
+import Foundation
+func randomInRange(_ range: Range<Int>) -> Int {
+    let count = UInt32(range.upperBound - range.lowerBound)
+    return  Int(arc4random_uniform(count)) + range.lowerBound
 }
-
 struct ArraySh{
-    private var theArray:[Int]
-    private(set) var nElements:Int
+    fileprivate var theArray:[Int]
+    fileprivate(set) var nElements:Int
     init(max:Int) {
-        theArray = Array<Int>(count: max,repeatedValue: 0)
+        theArray = Array<Int>(repeating: 0,count: max)
         nElements = 0
     }
-    mutating func insert(value:Int) {
+    mutating func insert(_ value:Int) {
         theArray[nElements] = value
         nElements += 1
     }
@@ -31,7 +37,7 @@ struct ArraySh{
     //    |                             |
     //leftPointer->                <-rightPointer privot
     //    算法效率为O(N)
-    mutating func partitionit(left:Int,right:Int,privot:Int) -> Int {
+    mutating func partitionit(_ left:Int,right:Int,privot:Int) -> Int {
         var leftPointer = left
         //: NOTE:这里修改算法的原因要把最后一个元素当做枢纽，所以没必要对枢纽划分， 划分算法的最后一点要吧枢纽交换到left指针停留的位置
         //         因为三值1求最中指的方法  left  right   right-1(原来的center) 已经有序 ，没必要排序
@@ -47,9 +53,9 @@ struct ArraySh{
             repeat {
                 rightPointer -= 1
                 // 遇见右侧小于 枢纽的停下来， 这样每次都能找到一个待交换的右侧的
-            }
-                
-                while rightPointer > leftPointer && theArray[rightPointer] > privot
+            } while rightPointer > leftPointer && theArray[rightPointer] > privot
+            
+            
             if leftPointer >= rightPointer {
                 break
             }else {
@@ -60,12 +66,12 @@ struct ArraySh{
             
         }
         //:  最后交换左右两端
-        swap(leftPointer, index2: right)
+        swap(leftPointer, index2: right-1)
         
         return leftPointer
         
     }
-    mutating func swap(index1:Int,index2:Int) {
+    mutating func swap(_ index1:Int,index2:Int) {
         let temp = theArray[index1]
         theArray[index1] = theArray[index2]
         theArray[index2] = temp
@@ -74,7 +80,7 @@ struct ArraySh{
     mutating func quickSort() {
         recQuickSort(0, right: nElements-1)
     }
-    mutating func recQuickSort(left:Int,right:Int) {
+    mutating func recQuickSort(_ left:Int,right:Int) {
         let size = right-left + 1
         if size <= 3  {
             manualSort(left, right: right)
@@ -89,7 +95,7 @@ struct ArraySh{
         }
     }
     
-    mutating func manualSort(left:Int,right:Int) {
+    mutating func manualSort(_ left:Int,right:Int) {
         let size = right-left + 1
         if size == 1 {
             return
@@ -114,7 +120,7 @@ struct ArraySh{
     }
     
     //     从三个中找出均值
-    mutating func mediaOf3(left:Int,right:Int) -> Int{
+    mutating func mediaOf3(_ left:Int,right:Int) -> Int {
         let center = (left+right)/2
         if theArray[left]  > theArray[center]{
             swap(left, index2: center)
@@ -137,7 +143,7 @@ struct ArraySh{
 var theArray = ArraySh(max: 10)
 
 for i in 0..<10 {
-    theArray.insert(randomInRange(0...999))
+    theArray.insert(randomInRange(Range<Int>(0...999)))
 }
 theArray.display()
 

@@ -6,19 +6,19 @@ import Foundation
 //: *但是在逆序的时候算法效率会变为O(N²) 因为每次都要为 1 和N-1个子数组排序
 
 
-func randomInRange(range: Range<Int>) -> Int {
-    let count = UInt32(range.endIndex - range.startIndex)
-    return  Int(arc4random_uniform(count)) + range.startIndex
+func randomInRange(_ range: Range<Int>) -> Int {
+    let count = UInt32(range.upperBound - range.lowerBound)
+    return  Int(arc4random_uniform(count)) + range.lowerBound
 }
 
 struct ArraySh{
     private var theArray:[Int]
     private(set) var nElements:Int
     init(max:Int) {
-        theArray = Array<Int>(count: max,repeatedValue: 0)
+        theArray = Array<Int>(repeating: 0,count: max)
         nElements = 0
     }
-    mutating func insert(value:Int) {
+    mutating func insert(_ value:Int) {
         theArray[nElements] = value
         nElements += 1
     }
@@ -34,7 +34,7 @@ struct ArraySh{
     //    |                             |
     //leftPointer->                <-rightPointer privot
     //    算法效率为O(N)
-    mutating func partitionit(left:Int,right:Int,privot:Int) -> Int {
+    mutating func partitionit(_ left:Int,right:Int,privot:Int) -> Int {
         var leftPointer = left - 1
         //: NOTE:这里修改算法的原因要把最后一个元素当做枢纽，所以没必要对枢纽划分， 划分算法的最后一点要吧枢纽交换到left指针停留的位置
         var rightPointer = right //之前为 right+1
@@ -67,7 +67,7 @@ struct ArraySh{
         return leftPointer
         
     }
-    mutating func swap(index1:Int,index2:Int) {
+    mutating func swap(_ index1:Int,index2:Int) {
         let temp = theArray[index1]
         theArray[index1] = theArray[index2]
         theArray[index2] = temp
@@ -76,7 +76,7 @@ struct ArraySh{
     mutating func quickSort() {
         recQuickSort(0, right: nElements-1)
     }
-    mutating func recQuickSort(left:Int,right:Int) {
+    mutating func recQuickSort(_ left:Int,right:Int) {
         if right - left <= 0 {
             return // 一个元素默认为有序的
         }else {
@@ -96,7 +96,8 @@ let count = 10
 var theArray = ArraySh(max: count)
 
 for i in 0..<count {
-    theArray.insert(randomInRange(0...999))
+    theArray.insert(randomInRange(Range<Int>(0...999)))
+    //theArray.insert(count-i)
 }
 theArray.display()
 
